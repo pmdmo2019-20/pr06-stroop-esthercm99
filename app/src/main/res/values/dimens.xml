@@ -28,4 +28,11 @@
 
     <dimen name="player_selection_item_imgAvatar_size">40dp</dimen>
 
+    <dimen name="height_card_dashboard">114dp</dimen>
+    <dimen name="width_card_dashboard">174dp</dimen>
+    <dimen name="width_btnFinish">100dp</dimen>
+    <dimen name="height_btnFinish">50dp</dimen>
+    <dimen name="assistant_desc_width">300dp</dimen>
+    <dimen name="assistant_desc_height">230dp</dimen>
+
 </resources>

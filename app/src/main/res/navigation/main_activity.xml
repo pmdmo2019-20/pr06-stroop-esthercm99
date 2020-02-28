@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_activity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
+    app:startDestination="@id/dashboardFragment">
 
-    <!-- TODO -->
-
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.dashboard.DashboardFragment"
+        android:label="@string/dashboard_title"
+        tools:layout="@layout/dashboard_fragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_playerSelectionFragment"
+            app:destination="@id/playerSelectionFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_assistantFragment"
+            app:destination="@id/assistantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment"
+        android:label="@string/about_title"
+        tools:layout="@layout/about_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.settings.SettingsFragment"
+        android:label="@string/settings_title" />
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.RankingFragment"
+        android:label="@string/ranking_title"
+        tools:layout="@layout/fragment_ranking" />
+    <fragment
+        android:id="@+id/playerSelectionFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.playerSelection.PlayerSelectionFragment"
+        android:label="@string/player_selection_title"
+        tools:layout="@layout/fragment_player_selection" >
+        <action
+            android:id="@+id/action_playerSelectionFragment_to_playerCreationFragment"
+            app:destination="@id/playerCreationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerCreationFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.playerCreation.PlayerCreationFragment"
+        android:label="@string/player_creation_title"
+        tools:layout="@layout/fragment_player_creation" />
+    <fragment
+        android:id="@+id/assistantFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"
+        android:label="@string/assistant_title" />
 </navigation>

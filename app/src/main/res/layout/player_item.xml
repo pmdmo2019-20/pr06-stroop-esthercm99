@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true">
+<!--
+    <androidx.cardview.widget.CardView
+        android:layout_width=""
+        android:layout_height="@dimen/dashboard_card_image_size"
+
+    <ImageView
+        android:id="@+id/avatar_selected"
+        android:src="@drawable/avatar_01_mexican"
+        android:layout_width="@dimen/player_selection_item_imgAvatar_size"
+        android:layout_height="@dimen/player_selection_item_imgAvatar_size"/>
+
+    <TextView
+        android:id="@+id/lblAvatar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Completado el 21/07/2019 a las 15:32" />
+-->
+</androidx.constraintlayout.widget.ConstraintLayout>
