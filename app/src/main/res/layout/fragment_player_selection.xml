@@ -95,4 +95,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+
+        android:layout_marginRight="@dimen/main_margin_2x"
+        android:layout_marginBottom="@dimen/main_margin_2x"
+
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_player_add_black_48dp"
+        android:backgroundTint="@color/accent"/>
+
 </FrameLayout>

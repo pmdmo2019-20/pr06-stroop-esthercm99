@@ -9,6 +9,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
+import es.iessaladillo.pedrojoya.stroop.ui.dialogInfo.DialogInfoFragment
+import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.fragment_player_selection.*
 import kotlinx.android.synthetic.main.main_activity.*
 
@@ -22,14 +24,12 @@ class PlayerSelectionFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_player_selection, container, false)
     }
 
-    companion object {
-        fun newInstance() =
-            PlayerSelectionFragment()
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupToolbar()
+
+        fabAddUser.setOnClickListener { navigateToCreatePlayer() }
+        iconEmptyView.setOnClickListener { navigateToCreatePlayer() }
         lblEmptyView.setOnClickListener { navigateToCreatePlayer() }
     }
 
@@ -39,5 +39,15 @@ class PlayerSelectionFragment : Fragment() {
 
     private fun setupToolbar() {
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarSelection)
+        toolbarSelection.inflateMenu(R.menu.menu_info)
+        toolbarSelection.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.btnInfoMenu -> DialogInfoFragment.newInstance(
+                    getString(R.string.player_selection_help_description)
+                )
+                    .show(requireFragmentManager(), "InfoDialog")
+            }
+            true
+        }
     }
 }
