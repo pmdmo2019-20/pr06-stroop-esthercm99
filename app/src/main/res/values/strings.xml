@@ -31,7 +31,7 @@
     <string name="assistant_settingsDescription">Set the game mode, you can define play by time, by words, or select the initial level among other settings</string>
     <string name="assistant_rankingDescription">Consult the ranking of points obtained in each game, as you play you will improve your score</string>
     <string name="assistant_assistantDescription">Still not clear on how the application works? Don\'t worry, from here you can go back to the game instructions</string>
-    <string name="assistant_playerDescription">The nickname is fundamental if you want to test your retention, since it will allow us to know which user has played and which is his position in the ranking, press this option if you want to enter a new player</string>
+    <string name="assistant_playerDescription">The nickname is fundamental if you want to test your retention, since it will allow us to know which player has played and which is his position in the ranking, press this option if you want to enter a new player</string>
     <string name="assistant_aboutDescription">This application is a project for the 2019/20 course \"Multimedia and mobile programming\" in Saladillo High School, Algeciras</string>
     <string name="assistant_finishDescription">And that\'s it, now you can start playing, press start and test your retention!</string>
     <string name="assistant_title">Assistant</string>
@@ -97,5 +97,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="game_title">GAME</string>
     <string name="setting_ranking_title">RANKING</string>
+    <string name="hint_nickname">(nickname)</string>
 
 </resources>
