@@ -15,9 +15,7 @@ import kotlin.concurrent.thread
     exportSchema = true
 )
 abstract class DatabasePlayer : RoomDatabase() {
-
     abstract val playerDao: PlayerDao
-
     companion object {
 
         @Volatile

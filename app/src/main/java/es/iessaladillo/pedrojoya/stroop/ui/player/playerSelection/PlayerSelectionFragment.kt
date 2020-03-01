@@ -1,25 +1,37 @@
 package es.iessaladillo.pedrojoya.stroop.ui.player.playerSelection
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.provider.Settings.Global.putLong
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.DatabasePlayer
 import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 import es.iessaladillo.pedrojoya.stroop.ui.dialogInfo.DialogInfoFragment
+import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.fragment_player_selection.*
 import kotlinx.android.synthetic.main.main_activity.*
 
 class PlayerSelectionFragment : Fragment() {
 
+    private val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(activity)
+    }
     private lateinit var playerSelectionAdapter: PlayerSelectionFragmentAdapter
     private val navController: NavController by lazy { NavHostFragment.findNavController(navHostFragment) }
     private val viewmodel: PlayerSelectionFragmentViewmodel by viewModels {
@@ -95,6 +107,9 @@ class PlayerSelectionFragment : Fragment() {
     }
 
     private fun playerSelection(position: Int) {
+        settings.edit {
+            putLong("currentIdPlayer", playerSelectionAdapter.dataList[position].idUser)
+        }
         viewmodel.setCurrentAvatar(playerSelectionAdapter.dataList[position].image)
         viewmodel.setCurrentPlayer(playerSelectionAdapter.dataList[position].username)
     }
