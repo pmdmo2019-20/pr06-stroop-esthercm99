@@ -36,5 +36,6 @@
     <dimen name="assistant_desc_height">230dp</dimen>
     <dimen name="avatar_card_width">110dp</dimen>
     <dimen name="avatar_card_height">80dp</dimen>
+    <dimen name="avatar_card_width_2">190dp</dimen>
 
 </resources>

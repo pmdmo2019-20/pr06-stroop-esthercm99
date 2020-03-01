@@ -15,6 +15,7 @@ import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.DatabasePlayer
+import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
 import es.iessaladillo.pedrojoya.stroop.ui.dialogInfo.DialogInfoFragment
 import kotlinx.android.synthetic.main.fragment_player_creation.*
@@ -75,6 +76,7 @@ class PlayerCreationFragment : Fragment() {
     private fun savePlayer() {
         if (txtPlayerCreation.text.toString().isNotEmpty() && viewmodel.currentPosition.value != 0.toLong()) {
             txtPlayerCreation.hideSoftKeyboard()
+            viewmodel.insertPlayer(Player(0, txtPlayerCreation.text.toString(), viewmodel.currentPosition.value!!.toLong()))
             Toast.makeText(context, "Save", Toast.LENGTH_SHORT).show()
             navController.navigateUp()
         }
