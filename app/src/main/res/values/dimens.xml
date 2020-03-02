@@ -37,5 +37,7 @@
     <dimen name="avatar_card_width">110dp</dimen>
     <dimen name="avatar_card_height">80dp</dimen>
     <dimen name="avatar_card_width_2">190dp</dimen>
+    <dimen name="header_game">150dp</dimen>
+    <dimen name="btn_Right_Wrong">150dp</dimen>
 
 </resources>

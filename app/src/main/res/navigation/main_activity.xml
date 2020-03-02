@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_assistantFragment"
             app:destination="@id/assistantFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -58,4 +61,9 @@
         android:id="@+id/assistantFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"
         android:label="@string/assistant_title" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>

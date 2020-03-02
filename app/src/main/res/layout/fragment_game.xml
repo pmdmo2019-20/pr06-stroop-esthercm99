@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.game.GameFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout android:id="@+id/headerGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/header_game"
+                    android:background="@color/primary"
+                    android:columnCount="3"
+                    android:rowCount="2"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context=".GridXMLActivity" >
+
+            <TextView
+                android:id="@+id/pointsWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_6x"/>
+            <TextView
+                android:id="@+id/lblWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_lblWordsLabel"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_5x"/>
+            <TextView
+                android:id="@+id/pointsCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_6x"/>
+            <TextView
+                android:id="@+id/lblCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_lblCorrectLabel"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_5x"/>
+            <TextView
+                android:id="@+id/numAttemps_Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_6x"/>
+            <TextView
+                android:id="@+id/lblAttemps_Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_attempts"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_textSize_5x"/>
+        </GridLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerGame"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+        <TextView   android:id="@+id/WordRndGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blue"
+                    android:textColor="@color/gameBlue"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/main_textSize_7x"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/btnCorrect"
+                    app:layout_constraintTop_toBottomOf="@id/progressBarGame"/>
+
+            <ImageView  android:id="@+id/btnCorrect"
+                        android:layout_width="@dimen/btn_Right_Wrong"
+                        android:layout_height="@dimen/btn_Right_Wrong"
+
+                        android:src="@drawable/ic_right_black_24dp"
+                        android:tint="@color/rightAnswer"
+
+                        app:layout_constraintRight_toLeftOf="@id/btnWrong"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView  android:id="@+id/btnWrong"
+                        android:layout_width="@dimen/btn_Right_Wrong"
+                        android:layout_height="@dimen/btn_Right_Wrong"
+
+                        android:src="@drawable/ic_wrong_black_24dp"
+                        android:tint="@color/wrongAnswer"
+
+                        app:layout_constraintLeft_toRightOf="@id/btnCorrect"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
