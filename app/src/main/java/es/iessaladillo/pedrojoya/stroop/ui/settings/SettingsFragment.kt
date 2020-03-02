@@ -24,7 +24,6 @@ class SettingsFragment : Fragment() {
     private fun setupViews() {
         setupToolbar()
     }
-
     private fun setupToolbar() {
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
         toolbar.inflateMenu(R.menu.menu_info)
@@ -38,4 +37,5 @@ class SettingsFragment : Fragment() {
             true
         }
     }
+
 }

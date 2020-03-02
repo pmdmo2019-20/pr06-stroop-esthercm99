@@ -84,13 +84,15 @@ class DashboardFragment : Fragment() {
 
     }
     private fun navigations() {
-        infoPlayerDashboard.setOnClickListener { navigateToPlayerSelection() }
+        btn_dash_play.setOnClickListener { navigateToPlay() }
+        btn_dash_about.setOnClickListener { navigateToAbout() }
         btn_dash_setting.setOnClickListener { navigateToSettings() }
         btn_dash_assistant.setOnClickListener { navigateToAssistant() }
         btn_dash_player.setOnClickListener { navigateToPlayerSelection() }
-        btn_dash_about.setOnClickListener { navigateToAbout() }
+        infoPlayerDashboard.setOnClickListener { navigateToPlayerSelection() }
     }
 
+    private fun navigateToPlay() = navController.navigate(R.id.gameFragment)
     private fun navigateToAbout() = navController.navigate(R.id.aboutFragment)
     private fun navigateToSettings() = navController.navigate(R.id.settingsFragment)
     private fun navigateToAssistant() = navController.navigate(R.id.assistantFragment)

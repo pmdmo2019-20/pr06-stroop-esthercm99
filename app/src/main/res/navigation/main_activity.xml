@@ -40,9 +40,13 @@
         android:label="@string/settings_title" />
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="es.iessaladillo.pedrojoya.stroop.RankingFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.ranking.RankingFragment"
         android:label="@string/ranking_title"
-        tools:layout="@layout/fragment_ranking" />
+        tools:layout="@layout/fragment_ranking" >
+        <action
+            android:id="@+id/action_rankingFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/playerSelectionFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.player.playerSelection.PlayerSelectionFragment"
@@ -65,5 +69,14 @@
         android:id="@+id/gameFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
 </navigation>

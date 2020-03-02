@@ -88,14 +88,13 @@
             app:layout_constraintTop_toBottomOf="@+id/headerGame"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
-        <TextView   android:id="@+id/WordRndGame"
+        <TextView   android:id="@+id/wordRndGame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Blue"
-                    android:textColor="@color/gameBlue"
                     android:textAlignment="center"
                     android:textSize="@dimen/main_textSize_7x"
                     android:textStyle="bold"
+                    android:textColor="#ffffff"
                     app:layout_constraintBottom_toTopOf="@id/btnCorrect"
                     app:layout_constraintTop_toBottomOf="@id/progressBarGame"/>
 

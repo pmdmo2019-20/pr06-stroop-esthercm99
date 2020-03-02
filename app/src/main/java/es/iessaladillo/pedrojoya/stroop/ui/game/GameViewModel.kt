@@ -1,13 +1,18 @@
 package es.iessaladillo.pedrojoya.stroop.ui.game
 
+import android.app.Application
 import android.os.Handler
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.data.PlayerDao
+import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
-
-class GameViewModel(
-    // TODO
-) : ViewModel() {
+class GameViewModel(private val playerDao: PlayerDao, private val application: Application) : ViewModel() {
 
     @Volatile
     private var isGameFinished: Boolean = false
@@ -17,29 +22,83 @@ class GameViewModel(
     private var millisUntilFinished: Int = 0
     private val handler: Handler = Handler()
 
-    // TODO
+    var isFinish: MutableLiveData<Boolean> = MutableLiveData(false)
+    lateinit var modeGame: String
+
+    var time: Int = -1
+    val barProgress: MutableLiveData<Int> = MutableLiveData(millisUntilFinished)
+
+    var attempts: MutableLiveData<Int> = MutableLiveData(5)
+    var points: MutableLiveData<Int> = MutableLiveData(0)
+    var numWords: MutableLiveData<Int> = MutableLiveData(0)
+    var numCorrect: MutableLiveData<Int> = MutableLiveData(0)
+
+    var player: Player? = null
+
+    var indexWord: MutableLiveData<Int> = MutableLiveData(0)
+    var indexColor: MutableLiveData<Int> = MutableLiveData(0)
+
+    val words = listOf("Green", "Red", "Yellow", "Blue")
+    val colors = listOf(R.color.gameGreen, R.color.gameRed, R.color.gameYellow, R.color.gameBlue)
+
+    fun setPlayer(idPlayerSelected: Long) {
+        thread {
+            player = playerDao.getUser(idPlayerSelected)
+        }
+    }
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
-        // TODO
+        barProgress.value = millisUntilFinished
     }
 
     private fun onGameTimeFinish() {
         isGameFinished = true
-        // TODO
+        isFinish.value = true
     }
 
-    fun nextWord() {
-        // TODO
+    private fun nextWord() {
+        refreshWord()
+        numWords.value = numWords.value?.plus(1)
+    }
+
+    fun refreshWord() {
+        indexWord.value = Random.nextInt(0, 4)
+        indexColor.value = Random.nextInt(0, 4)
     }
 
     fun checkRight() {
         currentWordMillis = 0
-        // TODO
+
+        if (indexColor.value == indexWord.value) {
+            points.value = points.value?.plus(10)
+            numCorrect.value = numCorrect.value?.plus(1)
+        } else {
+            attempts.value = attempts.value?.minus(1)
+        }
+
+        if (attempts.value == 0 && modeGame == "Attempts") {
+            onGameTimeFinish()
+        } else {
+            nextWord()
+        }
+
     }
 
     fun checkWrong() {
         currentWordMillis = 0
-        // TODO
+
+        if (indexColor.value != indexWord.value) {
+            points.value = points.value?.plus(10)
+            numCorrect.value = numCorrect.value?.plus(1)
+        } else {
+            attempts.value = attempts.value?.minus(1)
+        }
+
+        if (attempts.value == 0 && modeGame == "Attempts") {
+            onGameTimeFinish()
+        } else {
+            nextWord()
+        }
     }
 
     fun startGameThread(gameTime: Int, wordTime: Int) {
@@ -71,10 +130,8 @@ class GameViewModel(
             }
         }
     }
-
     override fun onCleared() {
         super.onCleared()
         isGameFinished = true
     }
-
 }
