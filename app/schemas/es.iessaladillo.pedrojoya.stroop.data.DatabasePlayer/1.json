@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "33407fbc761e70ddb4f41a5e19bab8ac",
+    "identityHash": "5aaa31023355da9b2ecf7c2c5a8aa179",
     "entities": [
       {
         "tableName": "Player",
@@ -44,12 +44,62 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "game",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gameId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `playerId` INTEGER NOT NULL, `modeGame` TEXT NOT NULL, `time` INTEGER NOT NULL, `numWords` INTEGER NOT NULL, `numCorrects` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "gameId",
+            "columnName": "gameId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playerId",
+            "columnName": "playerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modeGame",
+            "columnName": "modeGame",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numWords",
+            "columnName": "numWords",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numCorrects",
+            "columnName": "numCorrects",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "gameId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '33407fbc761e70ddb4f41a5e19bab8ac')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5aaa31023355da9b2ecf7c2c5a8aa179')"
     ]
   }
 }

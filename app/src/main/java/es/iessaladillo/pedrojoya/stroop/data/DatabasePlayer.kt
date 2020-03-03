@@ -4,18 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.data.entity.Game
 import es.iessaladillo.pedrojoya.stroop.data.entity.Player
-import kotlin.concurrent.thread
 
 @Database(
-    entities = [Player::class],
+    entities = [Player::class, Game::class],
     version = 1,
     exportSchema = true
 )
 abstract class DatabasePlayer : RoomDatabase() {
+
     abstract val playerDao: PlayerDao
+    abstract val gameDao: GameDao
+
     companion object {
 
         @Volatile

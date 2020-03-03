@@ -1,18 +1,23 @@
 package es.iessaladillo.pedrojoya.stroop.ui.game
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.os.Handler
 import android.widget.Toast
-import androidx.lifecycle.LiveData
+import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.data.GameDao
 import es.iessaladillo.pedrojoya.stroop.data.PlayerDao
+import es.iessaladillo.pedrojoya.stroop.data.entity.Game
+import es.iessaladillo.pedrojoya.stroop.data.entity.GamePlayer
 import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
-class GameViewModel(private val playerDao: PlayerDao, private val application: Application) : ViewModel() {
+class GameViewModel(private val playerDao: PlayerDao, private val gameDao: GameDao, private val application: Application) : ViewModel() {
 
     @Volatile
     private var isGameFinished: Boolean = false
@@ -33,7 +38,7 @@ class GameViewModel(private val playerDao: PlayerDao, private val application: A
     var numWords: MutableLiveData<Int> = MutableLiveData(0)
     var numCorrect: MutableLiveData<Int> = MutableLiveData(0)
 
-    var player: Player? = null
+    var player: Player = Player(-2, "No valid", -1L)
 
     var indexWord: MutableLiveData<Int> = MutableLiveData(0)
     var indexColor: MutableLiveData<Int> = MutableLiveData(0)
@@ -41,10 +46,8 @@ class GameViewModel(private val playerDao: PlayerDao, private val application: A
     val words = listOf("Green", "Red", "Yellow", "Blue")
     val colors = listOf(R.color.gameGreen, R.color.gameRed, R.color.gameYellow, R.color.gameBlue)
 
-    fun setPlayer(idPlayerSelected: Long) {
-        thread {
-            player = playerDao.getUser(idPlayerSelected)
-        }
+    private val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(application)
     }
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
@@ -56,6 +59,12 @@ class GameViewModel(private val playerDao: PlayerDao, private val application: A
         isFinish.value = true
     }
 
+    fun insertGame() {
+        val game = Game(0, player.idUser.toInt(), modeGame, numCorrect.value!!, numWords.value!!.toInt(), time)
+        thread {
+            gameDao.insertGame(game)
+        }
+    }
     private fun nextWord() {
         refreshWord()
         numWords.value = numWords.value?.plus(1)
