@@ -61,7 +61,7 @@ class GameFragment : Fragment() {
 
             isFinish.observe(viewLifecycleOwner) {
                 if(it) {
-                    navController.navigate(R.id.resultFragment)
+                    navController.navigate(R.id.action_result_to_dashboard)
                 }
             }
 

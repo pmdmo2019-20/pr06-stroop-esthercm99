@@ -27,5 +27,5 @@ class ResultFragment : Fragment() {
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarResult)
     }
 
-    
+
 }
