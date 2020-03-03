@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.stroop.ui.player.playerSelection
 
 import android.content.SharedPreferences
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.Settings.Global.putLong
 import androidx.fragment.app.Fragment
@@ -41,14 +42,11 @@ class PlayerSelectionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_player_selection, container, false)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        observe()
         setupToolbar()
         setupAdapter()
         setupRecyclerView()
-
-        fabAddUser.setOnClickListener { navigateToCreatePlayer() }
-        iconEmptyView.setOnClickListener { navigateToCreatePlayer() }
-        lblEmptyView.setOnClickListener { navigateToCreatePlayer() }
-
+        navigations()
         observe()
     }
 
@@ -79,6 +77,7 @@ class PlayerSelectionFragment : Fragment() {
     }
 
     private fun observe() {
+
         viewmodel.users.observe(this) {
             showPlayers(it)
         }
@@ -86,8 +85,12 @@ class PlayerSelectionFragment : Fragment() {
         viewmodel.currentAvatarPlayer.observe(this){
             if (it == 0L) {
                 imgPlayerSelect.setImageResource(R.drawable.logo)
+                btnTextEdit.visibility = View.INVISIBLE
+                btnEdit.visibility = View.INVISIBLE
             } else {
                 imgPlayerSelect.setImageResource(it.toInt())
+                btnTextEdit.visibility = View.VISIBLE
+                btnEdit.visibility = View.VISIBLE
             }
         }
 
@@ -113,5 +116,15 @@ class PlayerSelectionFragment : Fragment() {
         viewmodel.setCurrentAvatar(playerSelectionAdapter.dataList[position].image)
         viewmodel.setCurrentPlayer(playerSelectionAdapter.dataList[position].username)
     }
+
+    private fun navigations() {
+        btnEdit.setOnClickListener { navigateToEditPlayer() }
+        btnTextEdit.setOnClickListener { navigateToEditPlayer() }
+        fabAddUser.setOnClickListener { navigateToCreatePlayer() }
+        iconEmptyView.setOnClickListener { navigateToCreatePlayer() }
+        lblEmptyView.setOnClickListener { navigateToCreatePlayer() }
+    }
+
+    private fun navigateToEditPlayer() = navController.navigate(R.id.playerEditionFragment)
     private fun navigateToCreatePlayer() = navController.navigate(R.id.playerCreationFragment)
 }

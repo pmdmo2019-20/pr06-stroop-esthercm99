@@ -77,7 +77,6 @@ class PlayerCreationFragment : Fragment() {
         if (txtPlayerCreation.text.toString().isNotEmpty() && viewmodel.currentPosition.value != 0.toLong()) {
             txtPlayerCreation.hideSoftKeyboard()
             viewmodel.insertPlayer(Player(0, txtPlayerCreation.text.toString(), viewmodel.currentPosition.value!!.toLong()))
-            Toast.makeText(context, "Save", Toast.LENGTH_SHORT).show()
             navController.navigateUp()
         }
     }

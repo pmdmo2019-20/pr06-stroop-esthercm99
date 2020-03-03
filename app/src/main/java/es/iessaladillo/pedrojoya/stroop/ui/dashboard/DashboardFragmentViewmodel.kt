@@ -9,12 +9,12 @@ import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.data.PlayerDao
 import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 
-class DashboardFragmentViewmodel (playerDao: PlayerDao, private val application: Application) : ViewModel() {
+class DashboardFragmentViewmodel (private val playerDao: PlayerDao, private val application: Application) : ViewModel() {
     private val settings: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(application)
     }
 
-    val players: LiveData<List<Player>> = playerDao.getAllUsers()
+    var players: LiveData<List<Player>> = playerDao.getAllUsers()
 
     private val _currentIdPlayer: MutableLiveData<Long> = MutableLiveData()
     val currentUserId: LiveData<Long>
@@ -25,6 +25,7 @@ class DashboardFragmentViewmodel (playerDao: PlayerDao, private val application:
     }
 
     fun refresh() {
+        players = playerDao.getAllUsers()
         _currentIdPlayer.value = settings.getLong("currentIdPlayer", -1)
     }
 }

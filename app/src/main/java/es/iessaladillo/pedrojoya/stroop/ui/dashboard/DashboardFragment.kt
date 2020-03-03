@@ -43,7 +43,7 @@ class DashboardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        viewmodel.refresh()
         setupShowPlayer()
         navigations()
     }
@@ -65,17 +65,20 @@ class DashboardFragment : Fragment() {
 
         viewmodel.refresh()
 
-        if (settings.getLong("currentIdPlayer", -1) != -1L) {
-            var positionPlayer: Int = -1
+        if (settings.getLong("currentIdPlayer", -1) > -1L) {
+            var positionPlayer: Long = -1L
 
             viewmodel.currentUserId.observe(this) {  position ->
-                positionPlayer = position.toInt()
+                positionPlayer = position
             }
 
             viewmodel.players.observe(this) { listPlayers ->
-                val user: Player = listPlayers[positionPlayer-1]
-                imgPlayerDash.setImageResource(user.image.toInt())
-                namePlayerDash.text = user.username
+                listPlayers.forEach {
+                    if (it.idUser == positionPlayer) {
+                        imgPlayerDash.setImageResource(it.image.toInt())
+                        namePlayerDash.text = it.username
+                    }
+                }
             }
         } else {
             imgPlayerDash.setImageResource(R.drawable.logo)
@@ -84,7 +87,13 @@ class DashboardFragment : Fragment() {
 
     }
     private fun navigations() {
-        btn_dash_play.setOnClickListener { navigateToPlay() }
+        btn_dash_play.setOnClickListener {
+            if (settings.getLong("currentIdPlayer", -1) > -1L) {
+                navigateToPlay()
+            } else {
+                navigateToPlayerSelection()
+            }
+        }
         btn_dash_about.setOnClickListener { navigateToAbout() }
         btn_dash_setting.setOnClickListener { navigateToSettings() }
         btn_dash_assistant.setOnClickListener { navigateToAssistant() }

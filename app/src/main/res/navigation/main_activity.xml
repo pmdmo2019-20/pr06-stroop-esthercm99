@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_playerSelectionFragment_to_playerCreationFragment"
             app:destination="@id/playerCreationFragment" />
+        <action
+            android:id="@+id/action_playerSelectionFragment_to_playerEditionFragment"
+            app:destination="@id/playerEditionFragment" />
     </fragment>
     <fragment
         android:id="@+id/playerCreationFragment"
@@ -77,6 +80,10 @@
     <fragment
         android:id="@+id/resultFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ResultFragment"
-        android:label="fragment_result"
+        android:label="Result"
         tools:layout="@layout/fragment_result" />
+    <fragment
+        android:id="@+id/playerEditionFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.playerEdition.PlayerEditionFragment"
+        android:label="Player Edition" />
 </navigation>
