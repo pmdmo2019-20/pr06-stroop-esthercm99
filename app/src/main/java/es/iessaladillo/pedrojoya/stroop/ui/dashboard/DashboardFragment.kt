@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
@@ -14,7 +15,6 @@ import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.DatabasePlayer
-import es.iessaladillo.pedrojoya.stroop.data.entity.Player
 import es.iessaladillo.pedrojoya.stroop.ui.dialogInfo.DialogInfoFragment
 import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.main_activity.*
@@ -45,6 +45,7 @@ class DashboardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewmodel.refresh()
         setupShowPlayer()
+        isFirstSessionApp()
         navigations()
     }
 
@@ -83,6 +84,18 @@ class DashboardFragment : Fragment() {
         } else {
             imgPlayerDash.setImageResource(R.drawable.logo)
             namePlayerDash.text = getString(R.string.player_selection_no_player_selected)
+        }
+
+    }
+    private fun isFirstSessionApp() {
+        val firstSession = settings.getBoolean("firstSession", true)
+
+        if(firstSession){
+            navController.navigate(R.id.assistantFragment)
+        }
+
+        settings.edit {
+            putBoolean("firstSession", false)
         }
 
     }
