@@ -60,7 +60,9 @@ class GameViewModel(private val playerDao: PlayerDao, private val gameDao: GameD
     }
 
     fun insertGame() {
-        val game = Game(0, player.idUser.toInt(), modeGame, numCorrect.value!!, numWords.value!!.toInt(), time)
+        val correct = numCorrect.value!!
+        val wordsShow = numWords.value!!.toInt()
+        val game = Game(0, player.idUser.toInt(), modeGame, time, wordsShow, correct)
         thread {
             gameDao.insertGame(game)
         }

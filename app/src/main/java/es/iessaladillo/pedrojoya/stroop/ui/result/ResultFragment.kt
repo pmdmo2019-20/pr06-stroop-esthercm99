@@ -66,9 +66,13 @@ class ResultFragment : Fragment() {
                         namePlayer.text = player.username
                     }
 
-                    numCorrect.text = (games.numCorrects).toString()
-                    numIncorrect.text = (games.numWords - games.numCorrects).toString()
-                    points.text = (games.numCorrects * 10).toString()
+                    viewModel.game.value = games
+
+                    game.observe(viewLifecycleOwner) { gameObs ->
+                        numCorrect.text = (gameObs.numCorrects).toString()
+                        numIncorrect.text = (gameObs.numWords - gameObs.numCorrects).toString()
+                        points.text = (gameObs.numCorrects * 10).toString()
+                    }
                 }
 
             }
